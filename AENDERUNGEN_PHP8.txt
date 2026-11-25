@@ -1,0 +1,22 @@
+Änderungen gegenüber Version 1.8.5 (Anpassung an PHP 8, ohne Änderung des Aussehens/der Bedienung)
+
+auswert_admin.php
+- Zugriff nur noch für den angemeldeten Voll-Admin des LMO (vorher konnte jeder die Konfiguration überschreiben).
+- Sicherheits-Token gegen fremde Aufrufe (CSRF); Werte werden vor dem Speichern geprüft (Farben/Schrift/Zahlen/Ausrichtung/Text).
+- Formularwerte werden HTML-sicher ausgegeben.
+- PHP 8: $_POST[title] usw. -> $_POST['title'] (vorher Fatal Error beim Speichern), nicht definierte Variablen/Schlüssel behoben.
+- Pfad zur gesamt.aus kommt aus der Tippspiel-Konfiguration (dirtipp), Rückfall auf addon/tipp/tipps/.
+
+auswert2.php
+- PHP 8: nicht initialisierte Felder/Variablen, Sortierung am Listenende, Vorgänger beim ersten Eintrag, fehlende Konfigurationszeilen.
+- Absturz (TypeError) bei leerer Zeile am Ende der auswert.cfg behoben; leere Zeilen werden übersprungen.
+- Tippmodus: die fest eingebaute Zeile $tippmodus=1; entfernt, Wert kommt aus der Tippspiel-Konfiguration.
+- Konfigurationswerte werden bei der Ausgabe geprüft/escaped (auch wenn auswert.cfg von einer älteren Version stammt).
+- Leere Zeile (<tr> <td >) vor jedem Tipper entfernt (ungültiges HTML).
+- auswert_funk.php wird über den eigenen Ordner eingebunden.
+
+auswert_funk.php
+- Funktionen mehrfach einbindbar; Hilfsfunktionen zum Bereinigen von Konfigurationswerten.
+
+Alle Dateien: Quelltext einheitlich formatiert (PSR-12, kurze Array-Syntax, einfache Anführungszeichen, UTF-8, LF).
+auswert_admin.php: nicht angehakte Kontrollkästchen erzeugten Warnungen (fehlende POST-Werte) - behoben.
